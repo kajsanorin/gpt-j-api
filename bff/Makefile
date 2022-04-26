@@ -1,9 +1,9 @@
 build:
-	- docker build -t frontend .
+	- docker build -t bff .
 
 run:
-	- docker run --name frontend -dp 80:80 --restart always --net=host frontend
+	- docker run --name bff -dp 80:80 --restart always --net=host bff
 
 stop:
-	- docker stop frontend
-	- docker rm frontend
+	- docker stop bff
+	- docker rm bff

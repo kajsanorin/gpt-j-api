@@ -8,10 +8,16 @@ from pydantic import BaseModel, Field, ValidationError
 from transformers import GPTJForCausalLM, AutoModelForCausalLM, AutoTokenizer, pipeline
 
 
-start = time.time()
-path = '/data'
+class TextData(BaseModel):
+    input_text: str = Field(..., title='Input to the language model')
+    temperature: float = Field(1.0, title='Temperature')
+    output_length: int = Field(100, title='Length of the output')
+
 
 print('Loading model...')
+
+start = time.time()
+path = '/data'
 
 model = GPTJForCausalLM.from_pretrained(path, revision="float16", torch_dtype=torch.float16, low_cpu_mem_usage=True)
 tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
@@ -26,11 +32,6 @@ model.to(device)
 generator = pipeline('text-generation', model=model, tokenizer=tokenizer, device=0 if is_gpu else -1)
 
 app = FastAPI()
-
-class TextData(BaseModel):
-    input_text: str = Field(..., title='Input to the language model')
-    temperature: float = Field(1.0, title='Temperature')
-    output_length: int = Field(100, title='Length of the output')
 
 
 def generate(prompt, temperature=1.0, output_length=100):
