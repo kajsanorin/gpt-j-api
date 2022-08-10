@@ -4,6 +4,8 @@ This API is a service to host and run the finetuned GPT-J 6b language model deve
 
 It consists of two parts, a backend API to run inference on the language model and a backend-for-frontend (bff) build in Gradio for running the interface to interact with the model. Both parts are run as separate Docker containers.
 
+<img src="assets/gradio-ui.png" width="700">
+
 ## Running the API
 The backend API will look for a GPT model in `/home/kajsa.norin/models/hf_weights`. To run this locally you will have to reconfigure the Makefile so that the volume points to a valid directory, where a GPT model is placed. The API runs on port 8001 in a Docker container called `gpt-j`, and has only one endpoint `/generate_new_paragraph`.
 
