@@ -1,6 +1,6 @@
 # GPT-J API
 
-This API is a service to host and run the finetuned GPT-J 6b language model developed in the Educated Ether project. The service runs entirely in Docker and has support for both CPU and GPU, although running it on a CPU is painfully slow.
+This API is a service to run and interact with the finetuned GPT-J 6b language model developed in the Educated Ether project. The service runs entirely in Docker and has support for both CPU and GPU, although running it on a CPU is painfully slow.
 
 It consists of two parts, a backend API to run inference on the language model and a backend-for-frontend (bff) build in Gradio for running the interface to interact with the model. Both parts are run as separate Docker containers.
 
